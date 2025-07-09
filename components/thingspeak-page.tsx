@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Badge } from "@/components/ui/badge"
 import { Loader2, Cloud, RefreshCw, Brain, TreePine, Zap, Network } from "lucide-react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 
@@ -105,8 +104,8 @@ export default function ThingSpeakPage() {
 
       // Function to generate a slightly varied freshness
       const getVariedFreshness = (base: number) => {
-        let variation = (Math.random() - 0.5) * 8; // variation between -4 and 4
-        let fresh = base + variation;
+        const variation = (Math.random() - 0.5) * 8; // variation between -4 and 4
+        const fresh = base + variation;
         return Math.max(0, Math.min(100, fresh)); // clamp between 0 and 100
       };
 
@@ -147,7 +146,7 @@ export default function ThingSpeakPage() {
 
       setResult(fakeResult);
 
-    } catch (err) {
+    } catch {
       setError("Có lỗi xảy ra khi tạo dữ liệu giả lập.");
     } finally {
       setIsLoading(false);

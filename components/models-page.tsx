@@ -28,12 +28,6 @@ const modelIcons: { [key: string]: React.ReactNode } = {
   knn: <Network className="h-5 w-5" />,
 }
 
-const freshnessLabels: { [key: string]: string } = {
-  fresh_meat: "Thịt tươi",
-  spoiled_meat: "Thịt không tươi", 
-  rotten_meat: "Thịt hỏng",
-}
-
 const typeColors: { [key: string]: string } = {
   deep_learning: "bg-blue-100 text-blue-800",
   ensemble: "bg-green-100 text-green-800",
@@ -44,7 +38,6 @@ const typeColors: { [key: string]: string } = {
 export default function ModelsPage() {
   const [modelInfo, setModelInfo] = useState<ModelInfo | null>(null)
   const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     // Simulate fake data instead of fetching from API
@@ -85,37 +78,12 @@ export default function ModelsPage() {
     }, 500);
   }, [])
 
-  const fetchModelInfo = async () => {
-    try {
-      const response = await fetch("/api/models")
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
-      }
-
-      const data = await response.json()
-      setModelInfo(data)
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Có lỗi xảy ra khi tải thông tin mô hình")
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
   if (isLoading) {
     return (
       <div className="flex items-center justify-center p-8">
         <Loader2 className="h-8 w-8 animate-spin" />
         <span className="ml-2">Đang tải thông tin mô hình...</span>
       </div>
-    )
-  }
-
-  if (error) {
-    return (
-      <Alert variant="destructive">
-        <AlertDescription>{error}</AlertDescription>
-      </Alert>
     )
   }
 

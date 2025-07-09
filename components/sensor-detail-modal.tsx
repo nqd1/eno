@@ -30,8 +30,28 @@ const sensorIcons: { [key: string]: React.ReactNode } = {
   MQ135: <Wind className="h-6 w-6" />,
 }
 
+interface SensorDetails {
+  fullName: string;
+  detectedGases?: string[];
+  detectedParameters?: string[];
+  workingVoltage: string;
+  heatingVoltage?: string;
+  loadResistance?: string;
+  heatingResistance?: string;
+  detectionRange?: string;
+  accuracy?: string;
+  resolution?: string;
+  measurementRange?: string;
+  preheatingTime?: string;
+  responseTime: string;
+  recoveryTime?: string;
+  samplingRate?: string;
+  applications: string[];
+  color: string;
+}
+
 const getSensorDetails = (sensor: string) => {
-  const details: { [key: string]: any } = {
+  const details: { [key: string]: SensorDetails } = {
     MQ2: {
       fullName: "Cảm biến khí MQ-2",
       detectedGases: ["LPG", "Propane", "Methane", "Alcohol", "Hydrogen", "Smoke"],
@@ -148,7 +168,6 @@ const getSensorDetails = (sensor: string) => {
 export default function SensorDetailModal({ isOpen, onClose, sensor, sensorInfo }: SensorDetailModalProps) {
   const sensorDetail = getSensorDetails(sensor)
   const isGasSensor = sensorInfo.sensor_types.gas_sensors.includes(sensor)
-  const isEnvironmentalSensor = sensorInfo.sensor_types.environmental_sensors.includes(sensor)
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
