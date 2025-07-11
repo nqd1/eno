@@ -1,6 +1,11 @@
+interface RequestBody {
+  api_key?: string;
+}
+
 export async function POST(request: Request) {
+  let body: RequestBody = {}
   try {
-    const body = await request.json()
+    body = await request.json()
     const backendUrl = process.env.BACKEND_API_URL || 'http://localhost:5000'
 
     const response = await fetch(`${backendUrl}/predict/thingspeak`, {
