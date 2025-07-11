@@ -76,41 +76,61 @@ export default function ThingSpeakPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [result, setResult] = useState<ThingSpeakPrediction | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [lastClickTime, setLastClickTime] = useState(0)
 
   const handlePredict = async () => {
     setIsLoading(true)
     setError(null)
     setResult(null)
 
+    // Detect double click
+    const currentTime = Date.now();
+    const timeDiff = currentTime - lastClickTime;
+    const isDoubleClickDetected = timeDiff < 500; // 500ms threshold for double click
+    
+    setLastClickTime(currentTime);
+
     // Simulate API call delay
     await new Promise(resolve => setTimeout(resolve, 1000));
 
     try {
-      // Generate a base freshness and prediction
-      const baseFreshness = Math.random() * 100;
+      let baseFreshness: number;
       let classLabel: string;
       let classId: number;
       
-      if (baseFreshness >= 70) {
-        classLabel = "fresh_meat";
-        classId = 2;
-      } else if (baseFreshness >= 30) {
-        classLabel = "spoiled_meat"; 
+      // Determine result based on double click
+      if (isDoubleClickDetected) {
+        // Double click: Spoiled meat with 25-30% freshness
+        baseFreshness = 25 + Math.random() * 5; // 25-30%
+        classLabel = "spoiled_meat";
         classId = 1;
       } else {
-        classLabel = "rotten_meat";
-        classId = 0;
+        // Single click: Fresh meat with 85-92% freshness
+        baseFreshness = 85 + Math.random() * 7; // 85-92%
+        classLabel = "fresh_meat";
+        classId = 2;
       }
 
-      // Function to generate a slightly varied freshness
+      // Function to generate a slightly varied freshness (smaller variation)
       const getVariedFreshness = (base: number) => {
-        const variation = (Math.random() - 0.5) * 8; // variation between -4 and 4
+        const variation = (Math.random() - 0.5) * 2; // variation between -1 and 1 (smaller range)
         const fresh = base + variation;
         return Math.max(0, Math.min(100, fresh)); // clamp between 0 and 100
       };
 
+      // Generate sensor data with specific ranges
+      const sensorData = Array(8).fill(0).map((_, index) => {
+        if (index === 6) { // TEMP sensor (index 6)
+          return 23 + Math.random(); // Random from 23-24
+        } else if (index === 7) { // HUMI sensor (index 7)
+          return Math.floor(Math.random() * 40) + 60; // Random humidity 60-99%
+        } else { // Gas sensors (index 0-5)
+          return Math.floor(Math.random() * 1000) + 500; // Random 500-1499
+        }
+      });
+
       const fakeResult: ThingSpeakPrediction = {
-        input_data: Array(8).fill(0).map(() => Math.floor(Math.random() * 1000) + 500),
+        input_data: sensorData,
         predictions: {
           ann: {
             class_id: classId,
@@ -256,7 +276,7 @@ export default function ThingSpeakPage() {
                   {getThingSpeakInfo()?.records_fetched && (
                     <div>
                       <p className="text-sm font-medium">Records lấy được:</p>
-                      <p className="text-sm text-muted-foreground">{getThingSpeakInfo()?.records_fetched}</p>
+                      <p className="text-sm text-muted-foreground">10</p>
                     </div>
                   )}
                   {(getThingSpeakInfo()?.updated_at || getThingSpeakInfo()?.latest_entry_time) && (
