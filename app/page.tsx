@@ -112,10 +112,10 @@ export default function HomePage() {
                   transition={{ duration: 0.6, delay: 0.3 }}
                 >
                   {[
-                    { title: "Tổng số cảm biến", value: "8", desc: "6 cảm biến khí + 2 cảm biến môi trường" },
+                    { title: "Tổng số cảm biến", value: "4", desc: "2 cảm biến khí + 2 cảm biến môi trường" },
                     { title: "Mô hình AI", value: "4", desc: "ANN, Random Forest, XGBoost, KNN" },
                     { title: "Phân loại thịt", value: "3", desc: "Tươi (≥70%), Không tươi (30-70%), Hỏng (<30%)" },
-                    { title: "Độ chính xác", value: "95%", desc: "Dự đoán độ tươi của thịt" }
+                    { title: "Độ chính xác", value: "93%", desc: "Dự đoán độ tươi của thịt" }
                   ].map((item, index) => (
                     <motion.div
                       key={item.title}
@@ -149,12 +149,12 @@ export default function HomePage() {
                     </CardHeader>
                     <CardContent className="space-y-2">
                       <p className="text-sm">
-                        Hệ thống mũi điện tử sử dụng 8 cảm biến để phát hiện và đánh giá độ tươi của thịt. Dữ liệu từ các cảm biến được xử
+                        Hệ thống mũi điện tử sử dụng 4 cảm biến để phát hiện và đánh giá độ tươi của thịt. Dữ liệu từ các cảm biến được xử
                         lý bởi 4 mô hình AI khác nhau để đưa ra dự đoán chính xác về chất lượng thịt.
                       </p>
                       <div className="space-y-1">
                         <p className="text-sm">
-                          <strong>Cảm biến khí:</strong> Sensor 1-6 (khí độc hại, mùi hôi thối)
+                          <strong>Cảm biến khí:</strong> NH3, H2S (khí amoniac, hydro sulfua)
                         </p>
                         <p className="text-sm">
                           <strong>Cảm biến môi trường:</strong> Nhiệt độ, Độ ẩm
@@ -175,7 +175,7 @@ export default function HomePage() {
                       <div className="space-y-2">
                         {[
                           'Chuyển đến tab "Dự đoán"',
-                          'Nhập dữ liệu 8 cảm biến',
+                          'Nhập dữ liệu 4 cảm biến',
                           'Nhấn "Dự đoán" để xem kết quả',
                           'Xem độ tươi thịt từ 4 mô hình AI'
                         ].map((step, index) => (
