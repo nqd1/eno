@@ -31,36 +31,36 @@ export async function POST(request: Request) {
     // Return mock ThingSpeak prediction with 4 sensors
     const mockThingSpeakPrediction = {
       input_data: [
-        490 + Math.floor(Math.random() * 21), // Sensor 1: 490-510
-        600 + Math.floor(Math.random() * 11), // Sensor 2: 600-610
+        25.5 + Math.random() * 30, // NH3: 25.5-55.5 ppm
+        8.2 + Math.random() * 15,  // H2S: 8.2-23.2 ppm
         23 + Math.random(), // TEMP (°C): 23-24
-        50 + Math.floor(Math.random() * 11)   // HUMI (%): 50-60
+        50 + Math.floor(Math.random() * 21)   // HUMI (%): 50-70
       ],
       predictions: {
         ann: {
           class_id: 2,
           class_label: "fresh_meat",
-          probability: 0.91
+          probability: 0.93
         },
         random_forest: {
           class_id: 2,
           class_label: "fresh_meat",
-          probability: 0.88
+          probability: 0.92
         },
         xgboost: {
           class_id: 2,
           class_label: "fresh_meat",
-          probability: 0.92
+          probability: 0.94
         },
         knn: {
           class_id: 2,
           class_label: "fresh_meat",
-          probability: 0.86
+          probability: 0.92
         }
       },
       metadata: {
         timestamp: new Date().toISOString(),
-        sensor_names: ["Sensor 1", "Sensor 2", "TEMP", "HUMI"],
+        sensor_names: ["NH3", "H2S", "TEMP", "HUMI"],
         thingspeak: {
           records_fetched: 4,
           latest_entry_time: new Date().toISOString(),

@@ -12,7 +12,7 @@ export async function POST(request: Request) {
     
     if (body.sensor_data.length !== 4) {
       return Response.json(
-        { error: 'Cần đủ 4 giá trị sensor: Sensor 1, Sensor 2, TEMP, HUMI' },
+        { error: 'Cần đủ 4 giá trị sensor: NH3, H2S, TEMP, HUMI' },
         { status: 400 }
       )
     }
@@ -54,10 +54,10 @@ export async function POST(request: Request) {
         rotten_meat: 0.03
       },
       sensor_data: [
-        490 + Math.floor(Math.random() * 21), // Sensor 1: 490-510
-        600 + Math.floor(Math.random() * 11), // Sensor 2: 600-610
-        23 + Math.random(), // TEMP: 23-24°C
-        50 + Math.floor(Math.random() * 11)   // HUMI: 50-60%
+        25.5 + Math.random() * 30, // NH3: 25.5-55.5 ppm
+        8.2 + Math.random() * 15,  // H2S: 8.2-23.2 ppm
+        23 + Math.random(),        // TEMP: 23-24°C
+        50 + Math.floor(Math.random() * 21)   // HUMI: 50-70%
       ]
     }
     

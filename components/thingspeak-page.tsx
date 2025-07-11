@@ -105,8 +105,8 @@ export default function ThingSpeakPage() {
         classLabel = "spoiled_meat";
         classId = 1;
       } else {
-        // Single click: Fresh meat with 85-92% freshness
-        baseFreshness = 85 + Math.random() * 7; // 85-92%
+        // Single click: Fresh meat with 92-94% freshness
+        baseFreshness = 92 + Math.random() * 2; // 92-94%
         classLabel = "fresh_meat";
         classId = 2;
       }
@@ -120,14 +120,14 @@ export default function ThingSpeakPage() {
 
       // Generate sensor data with specific ranges for 4 sensors
       const sensorData = Array(4).fill(0).map((_, index) => {
-        if (index === 0) { // Sensor 1
-          return Math.floor(Math.random() * 21) + 490; // Random from 490-510
-        } else if (index === 1) { // Sensor 2
-          return Math.floor(Math.random() * 11) + 600; // Random from 600-610
+        if (index === 0) { // NH3
+          return 25.5 + Math.random() * 30; // Random from 25.5-55.5 ppm
+        } else if (index === 1) { // H2S
+          return 8.2 + Math.random() * 15; // Random from 8.2-23.2 ppm
         } else if (index === 2) { // TEMP sensor
           return 23 + Math.random(); // Random from 23-24°C
         } else { // HUMI sensor (index 3)
-          return Math.floor(Math.random() * 11) + 50; // Random humidity 50-60%
+          return Math.floor(Math.random() * 21) + 50; // Random humidity 50-70%
         }
       });
 
@@ -157,7 +157,7 @@ export default function ThingSpeakPage() {
         },
         metadata: {
           timestamp: new Date().toISOString(),
-          sensor_names: ["Sensor 1", "Sensor 2", "TEMP", "HUMI"],
+          sensor_names: ["NH3", "H2S", "TEMP", "HUMI"],
           thingspeak: {
             records_fetched: 4,
             latest_entry_time: new Date().toISOString(),

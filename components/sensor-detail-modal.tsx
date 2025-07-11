@@ -20,8 +20,8 @@ interface SensorDetailModalProps {
 }
 
 const sensorIcons: { [key: string]: React.ReactNode } = {
-  "Sensor1": <Wind className="h-6 w-6" />,
-  "Sensor2": <Wind className="h-6 w-6" />,
+  "NH3": <Wind className="h-6 w-6" />,
+  "H2S": <Wind className="h-6 w-6" />,
   TEMP: <Thermometer className="h-6 w-6" />,
   HUMI: <Droplets className="h-6 w-6" />,
 }
@@ -48,32 +48,34 @@ interface SensorDetails {
 
 const getSensorDetails = (sensor: string) => {
   const details: { [key: string]: SensorDetails } = {
-    "Sensor1": {
-      fullName: "Cảm biến khí Sensor 1",
-      detectedGases: ["Gas Type 1"],
+    "NH3": {
+      fullName: "Cảm biến khí Ammonia (NH3)",
+      detectedGases: ["Ammonia (NH3)"],
       workingVoltage: "5V",
       heatingVoltage: "5V ± 0.1V",
       loadResistance: "20kΩ",
       heatingResistance: "33Ω ± 5%",
-      detectionRange: "490-510",
+      detectionRange: "10-100 ppm",
+      accuracy: "±3 ppm",
       preheatingTime: "20s",
-      responseTime: "< 10s",
-      recoveryTime: "< 30s",
-      applications: ["Giám sát chất lượng không khí", "Phát hiện khí", "Hệ thống cảnh báo môi trường"],
+      responseTime: "< 30s",
+      recoveryTime: "< 60s",
+      applications: ["Phát hiện rò rỉ khí NH3", "Giám sát chất lượng không khí", "An toàn công nghiệp", "Hệ thống cảnh báo môi trường"],
       color: "text-green-600"
     },
-    "Sensor2": {
-      fullName: "Cảm biến khí Sensor 2",
-      detectedGases: ["Gas Type 2"],
+    "H2S": {
+      fullName: "Cảm biến khí Hydrogen Sulfide (H2S)",
+      detectedGases: ["Hydrogen Sulfide (H2S)"],
       workingVoltage: "5V",
       heatingVoltage: "5V ± 0.1V",
       loadResistance: "20kΩ",
       heatingResistance: "33Ω ± 5%",
-      detectionRange: "600-610",
+      detectionRange: "1-50 ppm",
+      accuracy: "±1 ppm",
       preheatingTime: "20s",
-      responseTime: "< 10s",
-      recoveryTime: "< 30s",
-      applications: ["Phát hiện khí", "An toàn công nghiệp", "Giám sát môi trường"],
+      responseTime: "< 30s",
+      recoveryTime: "< 60s",
+      applications: ["Phát hiện khí H2S độc hại", "An toàn công nghiệp", "Giám sát môi trường", "Hệ thống cảnh báo khí độc"],
       color: "text-yellow-600"
     },
     TEMP: {

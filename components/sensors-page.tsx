@@ -22,8 +22,8 @@ interface SensorInfo {
 }
 
 const sensorIcons: { [key: string]: React.ReactNode } = {
-  "Sensor1": <Wind className="h-4 w-4" />,
-  "Sensor2": <Wind className="h-4 w-4" />,
+  "NH3": <Wind className="h-4 w-4" />,
+  "H2S": <Wind className="h-4 w-4" />,
   TEMP: <Thermometer className="h-4 w-4" />,
   HUMI: <Droplets className="h-4 w-4" />,
 }

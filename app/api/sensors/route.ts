@@ -21,15 +21,15 @@ export async function GET() {
     
     // Return fallback data for 4 main sensors
     const fallbackData = {
-      sensor_features: ["Sensor1", "Sensor2", "TEMP", "HUMI"],
+      sensor_features: ["NH3", "H2S", "TEMP", "HUMI"],
       sensor_count: 4,
       sensor_types: {
-        gas_sensors: ["Sensor1", "Sensor2"],
+        gas_sensors: ["NH3", "H2S"],
         environmental_sensors: ["TEMP", "HUMI"]
       },
       sensor_descriptions: {
-        "Sensor1": "Cảm biến khí Sensor 1",
-        "Sensor2": "Cảm biến khí Sensor 2", 
+        "NH3": "Cảm biến khí Ammonia (NH3) - phát hiện khí amoniac",
+        "H2S": "Cảm biến khí Hydrogen Sulfide (H2S) - phát hiện khí hydro sulfua", 
         TEMP: "Cảm biến nhiệt độ môi trường",
         HUMI: "Cảm biến độ ẩm không khí"
       }

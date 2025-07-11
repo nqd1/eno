@@ -45,10 +45,10 @@ interface PredictionResult {
 }
 
 const sensorLabels = [
-  { name: "Sensor 1", description: "Gas Sensor 1 (490-510)" },
-  { name: "Sensor 2", description: "Gas Sensor 2 (600-610)" },
-  { name: "TEMP", description: "Temperature (°C)" },
-  { name: "HUMI", description: "Humidity (50-60%)" },
+  { name: "NH3", description: "Cảm biến khí NH3 (10-100 ppm)" },
+  { name: "H2S", description: "Cảm biến khí H2S (1-50 ppm)" },
+  { name: "TEMP", description: "Nhiệt độ (°C)" },
+  { name: "HUMI", description: "Độ ẩm (%)" },
 ]
 
 const odorLabels: { [key: string]: string } = {
@@ -84,7 +84,7 @@ export default function PredictionPage() {
     try {
        // Validate input
        if (sensorData.some(val => isNaN(Number.parseFloat(val)) || val === "")) {
-        throw new Error("Vui lòng nhập đủ và đúng định dạng dữ liệu cho 8 cảm biến.");
+        throw new Error("Vui lòng nhập đủ và đúng định dạng dữ liệu cho 4 cảm biến.");
       }
 
       // Generate a base freshness and prediction
@@ -152,7 +152,7 @@ export default function PredictionPage() {
   }
 
   const loadSampleData = () => {
-    const sampleData = ["815", "2530", "1075", "2510", "1435", "2160", "37", "72"]
+    const sampleData = ["25.5", "8.2", "24.5", "65"]
     setSensorData(sampleData)
   }
 

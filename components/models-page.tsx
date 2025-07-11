@@ -46,25 +46,25 @@ export default function ModelsPage() {
         ann: {
           name: "Neural Network (ANN)",
           type: "deep_learning",
-          accuracy: "94.2%",
+          accuracy: "93.8%",
           description: "Mạng nơ-ron nhân tạo với khả năng học sâu để phân tích độ tươi thịt"
         },
         random_forest: {
           name: "Random Forest",
           type: "ensemble", 
-          accuracy: "92.8%",
+          accuracy: "92.5%",
           description: "Mô hình ensemble kết hợp nhiều cây quyết định"
         },
         xgboost: {
           name: "XGBoost",
           type: "gradient_boosting",
-          accuracy: "93.5%",
+          accuracy: "93.7%",
           description: "Gradient boosting tối ưu cho phân loại độ tươi"
         },
         knn: {
           name: "K-Nearest Neighbors",
           type: "instance_based",
-          accuracy: "91.7%",
+          accuracy: "92.8%",
           description: "Phân loại dựa trên k láng giềng gần nhất"
         }
       },
