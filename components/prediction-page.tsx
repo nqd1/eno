@@ -45,14 +45,10 @@ interface PredictionResult {
 }
 
 const sensorLabels = [
-  { name: "Sensor 1", description: "Smoke, Propane, Hydrogen" },
-  { name: "Sensor 2", description: "Alcohol, Ethanol" },
-  { name: "Sensor 3", description: "Methane, CNG Gas" },
-  { name: "Sensor 4", description: "LPG, Propane Gas" },
-  { name: "Sensor 5", description: "Carbon Monoxide" },
-  { name: "Sensor 6", description: "Air Quality (Ammonia, Sulfide)" },
+  { name: "Sensor 1", description: "Gas Sensor 1 (490-510)" },
+  { name: "Sensor 2", description: "Gas Sensor 2 (600-610)" },
   { name: "TEMP", description: "Temperature (°C)" },
-  { name: "HUMI", description: "Humidity (%)" },
+  { name: "HUMI", description: "Humidity (50-60%)" },
 ]
 
 const odorLabels: { [key: string]: string } = {
@@ -66,7 +62,7 @@ const odorLabels: { [key: string]: string } = {
 }
 
 export default function PredictionPage() {
-  const [sensorData, setSensorData] = useState<string[]>(Array(8).fill(""))
+  const [sensorData, setSensorData] = useState<string[]>(Array(4).fill(""))
   const [isLoading, setIsLoading] = useState(false)
   const [result, setResult] = useState<PredictionResult | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -165,7 +161,7 @@ export default function PredictionPage() {
       <Card>
         <CardHeader>
           <CardTitle>Dự đoán mùi từ dữ liệu cảm biến</CardTitle>
-          <CardDescription>Nhập dữ liệu từ 8 cảm biến để dự đoán loại mùi</CardDescription>
+          <CardDescription>Nhập dữ liệu từ 4 cảm biến để dự đoán loại mùi</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">

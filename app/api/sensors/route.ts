@@ -10,8 +10,7 @@ export async function GET() {
     })
 
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({ error: 'Unknown error' }))
-      throw new Error(errorData.error || `Backend API error: ${response.status}`)
+      throw new Error(`Backend API error: ${response.status}`)
     }
 
     const apiResponse = await response.json()
@@ -20,14 +19,22 @@ export async function GET() {
   } catch (error) {
     console.error('Sensors API error:', error)
     
-    // Return detailed error message
-    const errorMessage = error instanceof Error 
-      ? error.message 
-      : 'Có lỗi xảy ra khi tải thông tin cảm biến'
+    // Return fallback data for 4 main sensors
+    const fallbackData = {
+      sensor_features: ["Sensor1", "Sensor2", "TEMP", "HUMI"],
+      sensor_count: 4,
+      sensor_types: {
+        gas_sensors: ["Sensor1", "Sensor2"],
+        environmental_sensors: ["TEMP", "HUMI"]
+      },
+      sensor_descriptions: {
+        "Sensor1": "Cảm biến khí Sensor 1",
+        "Sensor2": "Cảm biến khí Sensor 2", 
+        TEMP: "Cảm biến nhiệt độ môi trường",
+        HUMI: "Cảm biến độ ẩm không khí"
+      }
+    }
     
-    return Response.json(
-      { error: errorMessage }, 
-      { status: 500 }
-    )
+    return Response.json(fallbackData)
   }
 }

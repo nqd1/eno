@@ -20,14 +20,10 @@ interface SensorDetailModalProps {
 }
 
 const sensorIcons: { [key: string]: React.ReactNode } = {
+  "Sensor1": <Wind className="h-6 w-6" />,
+  "Sensor2": <Wind className="h-6 w-6" />,
   TEMP: <Thermometer className="h-6 w-6" />,
   HUMI: <Droplets className="h-6 w-6" />,
-  MQ2: <Wind className="h-6 w-6" />,
-  MQ3: <Wind className="h-6 w-6" />,
-  MQ4: <Wind className="h-6 w-6" />,
-  MQ6: <Wind className="h-6 w-6" />,
-  MQ7: <Wind className="h-6 w-6" />,
-  MQ135: <Wind className="h-6 w-6" />,
 }
 
 interface SensorDetails {
@@ -52,89 +48,33 @@ interface SensorDetails {
 
 const getSensorDetails = (sensor: string) => {
   const details: { [key: string]: SensorDetails } = {
-    MQ2: {
-      fullName: "Cảm biến khí MQ-2",
-      detectedGases: ["LPG", "Propane", "Methane", "Alcohol", "Hydrogen", "Smoke"],
+    "Sensor1": {
+      fullName: "Cảm biến khí Sensor 1",
+      detectedGases: ["Gas Type 1"],
       workingVoltage: "5V",
       heatingVoltage: "5V ± 0.1V",
       loadResistance: "20kΩ",
       heatingResistance: "33Ω ± 5%",
-      detectionRange: "300-10000ppm",
+      detectionRange: "490-510",
       preheatingTime: "20s",
       responseTime: "< 10s",
       recoveryTime: "< 30s",
-      applications: ["Phát hiện rò rỉ khí", "Hệ thống báo khói", "Thiết bị an toàn công nghiệp"],
-      color: "text-red-600"
-    },
-    MQ3: {
-      fullName: "Cảm biến khí MQ-3",
-      detectedGases: ["Alcohol", "Ethanol", "Benzine"],
-      workingVoltage: "5V",
-      heatingVoltage: "5V ± 0.1V",
-      loadResistance: "200kΩ",
-      heatingResistance: "33Ω ± 5%",
-      detectionRange: "0.05-10mg/L",
-      preheatingTime: "20s",
-      responseTime: "< 10s",
-      recoveryTime: "< 30s",
-      applications: ["Máy đo nồng độ cồn", "Hệ thống kiểm soát xe", "Thiết bị y tế"],
-      color: "text-blue-600"
-    },
-    MQ4: {
-      fullName: "Cảm biến khí MQ-4",
-      detectedGases: ["Methane", "CNG Gas"],
-      workingVoltage: "5V",
-      heatingVoltage: "5V ± 0.1V",
-      loadResistance: "20kΩ",
-      heatingResistance: "33Ω ± 5%",
-      detectionRange: "200-10000ppm",
-      preheatingTime: "20s",
-      responseTime: "< 10s",
-      recoveryTime: "< 30s",
-      applications: ["Phát hiện rò rỉ khí tự nhiên", "Hệ thống an toàn gia đình", "Công nghiệp dầu khí"],
+      applications: ["Giám sát chất lượng không khí", "Phát hiện khí", "Hệ thống cảnh báo môi trường"],
       color: "text-green-600"
     },
-    MQ6: {
-      fullName: "Cảm biến khí MQ-6",
-      detectedGases: ["LPG", "Butane", "Propane"],
+    "Sensor2": {
+      fullName: "Cảm biến khí Sensor 2",
+      detectedGases: ["Gas Type 2"],
       workingVoltage: "5V",
       heatingVoltage: "5V ± 0.1V",
       loadResistance: "20kΩ",
       heatingResistance: "33Ω ± 5%",
-      detectionRange: "200-10000ppm",
+      detectionRange: "600-610",
       preheatingTime: "20s",
       responseTime: "< 10s",
       recoveryTime: "< 30s",
-      applications: ["Phát hiện rò rỉ gas LPG", "Hệ thống báo động", "Thiết bị an toàn bếp gas"],
-      color: "text-orange-600"
-    },
-    MQ7: {
-      fullName: "Cảm biến khí MQ-7",
-      detectedGases: ["Carbon Monoxide (CO)"],
-      workingVoltage: "5V",
-      heatingVoltage: "5V ± 0.1V",
-      loadResistance: "10kΩ",
-      heatingResistance: "33Ω ± 5%",
-      detectionRange: "20-2000ppm",
-      preheatingTime: "48h",
-      responseTime: "< 10s",
-      recoveryTime: "< 30s",
-      applications: ["Phát hiện khí CO", "Hệ thống báo động độc hại", "An toàn lao động"],
-      color: "text-purple-600"
-    },
-    MQ135: {
-      fullName: "Cảm biến chất lượng không khí MQ-135",
-      detectedGases: ["NH3", "NOx", "Alcohol", "Benzene", "CO2", "Smoke"],
-      workingVoltage: "5V",
-      heatingVoltage: "5V ± 0.1V",
-      loadResistance: "20kΩ",
-      heatingResistance: "33Ω ± 5%",
-      detectionRange: "10-300ppm (NH3), 10-1000ppm (Benzene)",
-      preheatingTime: "20s",
-      responseTime: "< 10s",
-      recoveryTime: "< 30s",
-      applications: ["Giám sát chất lượng không khí", "Hệ thống thông gió thông minh", "IoT môi trường"],
-      color: "text-indigo-600"
+      applications: ["Phát hiện khí", "An toàn công nghiệp", "Giám sát môi trường"],
+      color: "text-yellow-600"
     },
     TEMP: {
       fullName: "Cảm biến nhiệt độ DHT22",
@@ -154,7 +94,7 @@ const getSensorDetails = (sensor: string) => {
       workingVoltage: "3.3V - 5V",
       accuracy: "±2-5% RH",
       resolution: "0.1% RH",
-      measurementRange: "0-100% RH",
+      measurementRange: "50-60% RH",
       responseTime: "2s",
       samplingRate: "0.5Hz",
       applications: ["Giám sát độ ẩm", "Hệ thống tưới tiêu", "Kho bảo quản"],

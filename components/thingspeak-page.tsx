@@ -118,14 +118,16 @@ export default function ThingSpeakPage() {
         return Math.max(0, Math.min(100, fresh)); // clamp between 0 and 100
       };
 
-      // Generate sensor data with specific ranges
-      const sensorData = Array(8).fill(0).map((_, index) => {
-        if (index === 6) { // TEMP sensor (index 6)
-          return 23 + Math.random(); // Random from 23-24
-        } else if (index === 7) { // HUMI sensor (index 7)
-          return Math.floor(Math.random() * 40) + 60; // Random humidity 60-99%
-        } else { // Gas sensors (index 0-5)
-          return Math.floor(Math.random() * 1000) + 500; // Random 500-1499
+      // Generate sensor data with specific ranges for 4 sensors
+      const sensorData = Array(4).fill(0).map((_, index) => {
+        if (index === 0) { // Sensor 1
+          return Math.floor(Math.random() * 21) + 490; // Random from 490-510
+        } else if (index === 1) { // Sensor 2
+          return Math.floor(Math.random() * 11) + 600; // Random from 600-610
+        } else if (index === 2) { // TEMP sensor
+          return 23 + Math.random(); // Random from 23-24°C
+        } else { // HUMI sensor (index 3)
+          return Math.floor(Math.random() * 11) + 50; // Random humidity 50-60%
         }
       });
 
@@ -155,9 +157,9 @@ export default function ThingSpeakPage() {
         },
         metadata: {
           timestamp: new Date().toISOString(),
-          sensor_names: ["Sensor 1", "Sensor 2", "Sensor 3", "Sensor 4", "Sensor 5", "Sensor 6", "TEMP", "HUMI"],
+          sensor_names: ["Sensor 1", "Sensor 2", "TEMP", "HUMI"],
           thingspeak: {
-            records_fetched: 8,
+            records_fetched: 4,
             latest_entry_time: new Date().toISOString(),
             api_key: apiKey,
           }

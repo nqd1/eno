@@ -22,14 +22,10 @@ interface SensorInfo {
 }
 
 const sensorIcons: { [key: string]: React.ReactNode } = {
+  "Sensor1": <Wind className="h-4 w-4" />,
+  "Sensor2": <Wind className="h-4 w-4" />,
   TEMP: <Thermometer className="h-4 w-4" />,
   HUMI: <Droplets className="h-4 w-4" />,
-  MQ2: <Wind className="h-4 w-4" />,
-  MQ3: <Wind className="h-4 w-4" />,
-  MQ4: <Wind className="h-4 w-4" />,
-  MQ6: <Wind className="h-4 w-4" />,
-  MQ7: <Wind className="h-4 w-4" />,
-  MQ135: <Wind className="h-4 w-4" />,
 }
 
 export default function SensorsPage() {
